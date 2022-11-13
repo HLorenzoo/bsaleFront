@@ -27,9 +27,14 @@
           srcset="
             https://dojiw2m9tvv09.cloudfront.net/4/8/img-logos-logo-bsale-blanco.png?3035
           "
-          alt="Logo de Bsale blanco"
+          alt="Logo de Bsale blanco" onclick="getResponse()"
         />
-        <!-- <a href="#" class="logo nav-link">Bsale Front </a> -->
+        <div class="search animate__animated animate__fadeIn animate__slow animate__delay-2s">
+        <input type="text" class="input" id="busqueda">
+        <button onclick="busqueda()"><img
+          src="https://static.vecteezy.com/system/resources/previews/009/589/346/non_2x/magnifying-icon-magnifying-clipart-transparent-free-png.png"
+          class="lupa"
+        /></button></div>
         <button class="nav-toggle" aria-label="Abrir menú">
           <i class="fas fa-bars"></i>
         </button>
@@ -42,21 +47,20 @@
     <main>
       <div class="h">
         <div class="home">
-          <div class="titulo animate__animated animate__fadeIn animate__slow">
+          <div class="titulo animate__animated animate__fadeIn animate__slow animate__delay-2s">
             <h1 aria-label="BSDrinks"></h1>
           </div>
-          <div
+          <!-- <div
             class="busqueda animate__animated animate__fadeIn animate__slow animate__delay-2s"
           >
             <div class="tituloInput">
-              <img
-                src="https://static.vecteezy.com/system/resources/previews/009/589/346/non_2x/magnifying-icon-magnifying-clipart-transparent-free-png.png"
-                class="lupa"
-              />
+              
               <h2>Busca Aqui!</h2>
             </div>
-            <input type="text" class="input" />
-          </div>
+            <input type="text" class="input" >
+            <button>Buscar</button>
+          </div> -->
+          
         </div>
         <div id="data"
           class="container animate__animated animate__fadeIn animate__slow animate__delay-3s"

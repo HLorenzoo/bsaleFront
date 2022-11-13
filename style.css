@@ -23,7 +23,8 @@ body {
 
 .nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: center;
   z-index: 200;
   max-width: 992px;
   margin: 0 auto;
@@ -183,11 +184,16 @@ body {
   align-items: center;
 }
 .lupa {
-  width: 55px;
-  height: 55px;
+  width: 41px;
+  height: 41px;
+}
+.search {
+  display: flex;
+  flex-direction: row;
 }
 .input {
   margin-left: 25px;
+  height: 50px;
 }
 .home {
   padding-top: 15px;
@@ -360,4 +366,14 @@ h2 {
     grid-template-columns: repeat(3, 1fr);
     padding-left: 50px;
   }
+}
+.err {
+  display: flex;
+  width: 500px;
+  justify-content: center;
+  align-items: center;
+
+}
+.cat{
+  width: 200px;
 }
