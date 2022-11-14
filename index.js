@@ -10,18 +10,28 @@ navToggle.addEventListener("click", () => {
     navToggle.setAttribute("aria-label", "Abrir menú");
   }
 });
+//Funcion para renderizar Componentes Navbar
+const renderNavbar = (data) => {
+  let body = "";
+  for (var i = 0; i < data.length; i++) {
+    
+    body += ` <li class="nav-menu-item">
+    <a href="#" class="nav-menu-link nav-link" key=${data[i].i}>${data[i].name}</a>
+  </li>`;
+  }
+  document.getElementById("navbar").innerHTML = body;
+};
 
+//Funcion para renderizar Cards en Home
 const mostrarData = (data) => {
   let body = "";
   for (var i = 0; i < data.data.length; i++) {
-    console.log(data.data);
     body += `<div class="card">
     <div class="card-image">
       <img
         src="${data.data[i].url_image}"
         alt="..."
       />
-      <i class="bx bx-star"></i>
     </div>
     <div class="card-content">
       <h3>${data.data[i].name}</h3>
@@ -32,25 +42,32 @@ const mostrarData = (data) => {
   </div>`;
   }
   document.getElementById("data").innerHTML = body;
-  console.log(body);
 };
 
 //Obtener productos fetch inicial
 
-let product = {};
+let products = [];
 const getResponse = async () => {
-  let url = "http://localhost:8080/api/products/";
+  //FETCH CATEGORIAS
+  let category = "http://localhost:8080/api/category/";
+  const res = await fetch(category, {
+    method: "GET",
+  });
+  if (!res.ok) {
+    throw new Error(`HTTP error! Estado : ${res.status}`);
+  }
+  const { data } = await res.json();
+  renderNavbar(data);
 
-  // const response = await fetch(url, {
-  //   method: "GET",
-  // });
-  // if (!response.ok) {
-  //   throw new Error(`HTTP error! Estado : ${response.status}`);
-  // }
-  // product = await response.json();
-  fetch(url)
-    .then((response) => response.json())
-    .then((data) => mostrarData(data))
-    .catch((error) => console.log(error));
+  // FETCH PRODUCTOS
+  let url = "http://localhost:8080/api/products/";
+  const response = await fetch(url, {
+    method: "GET",
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! Estado : ${response.status}`);
+  }
+  products = await response.json();
+  mostrarData(products);
 };
 getResponse();
