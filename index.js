@@ -14,7 +14,7 @@ navToggle.addEventListener("click", () => {
 const renderNavbar = (data) => {
   let body = "";
   for (var i = 0; i < data.length; i++) {
-    body += ` <li class="nav-menu-item">
+    body += `<li class="nav-menu-item" >
     <a href="#" class="nav-menu-link nav-link" key=${data[i].i}>${data[i].name}</a>
   </li>`;
   }
@@ -24,8 +24,6 @@ const renderNavbar = (data) => {
 //Funcion para renderizar Cards en Home
 const mostrarData = (data) => {
   let body = "";
-  // if(!data[0].name)
-  console.log(data);
   if (data.data.length == 0) {
     body =
       "<div class='err'><h1>NO HAY DATOS</h1><img class='cat' src='cat.png'/></div>";
@@ -55,7 +53,7 @@ const mostrarData = (data) => {
 let products = [];
 const getResponse = async () => {
   //FETCH CATEGORIAS
-  let category = "http://localhost:8080/api/category/";
+  let category = "https://bsaleback.onrender.com/api/category/";
   const res = await fetch(category, {
     method: "GET",
   });
@@ -66,7 +64,7 @@ const getResponse = async () => {
   renderNavbar(data);
 
   // FETCH PRODUCTOS
-  let url = "http://localhost:8080/api/products/";
+  let url = "https://bsaleback.onrender.com/api/products/";
   const response = await fetch(url, {
     method: "GET",
   });
@@ -78,8 +76,9 @@ const getResponse = async () => {
 };
 getResponse();
 
+//BUSQUEDA
 const busqueda = async () => {
-  let url = `http://localhost:8080/api/products/${
+  let url = `https://bsaleback.onrender.com/api/products/${
     document.getElementById("busqueda").value
   }`;
   const response = await fetch(url, {
@@ -91,3 +90,29 @@ const busqueda = async () => {
   products = await response.json();
   mostrarData(products);
 };
+
+//Navbar
+
+const nav = async (data) => {
+  let url = `https://bsaleback.onrender.com/api/products/cat/${data}`;
+  const response = await fetch(url, {
+    method: "GET",
+  });
+  if (!response.ok) {
+    throw new Error(`HTTP error! Estado : ${response.status}`);
+  }
+  products = await response.json();
+  mostrarData(products);
+};
+
+setTimeout(() => {
+  var elements = document.getElementsByClassName("nav-menu-item");
+
+  for (var i = 0; i < elements.length; i++) {
+    let text = "";
+    text = elements[i].innerText;
+    elements[i].addEventListener("click", () => {
+      nav(text);
+    });
+  }
+}, 6000);

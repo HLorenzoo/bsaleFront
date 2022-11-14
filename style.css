@@ -194,6 +194,7 @@ body {
 .input {
   margin-left: 25px;
   height: 50px;
+  width: 200px;
 }
 .home {
   padding-top: 15px;
@@ -360,6 +361,11 @@ h2 {
     padding-left: 0px;
   }
 }
+@media (max-width: 600px) {
+  .input {
+    width: 50%;
+  }
+}
 
 @media (min-width: 1000px) {
   .container {
@@ -372,8 +378,7 @@ h2 {
   width: 500px;
   justify-content: center;
   align-items: center;
-
 }
-.cat{
+.cat {
   width: 200px;
 }
